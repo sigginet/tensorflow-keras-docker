@@ -32,6 +32,7 @@ RUN pip --no-cache-dir install \
         h5py \
         pydot-ng \
         graphviz \
+        tweepy \
         && \
     python -m ipykernel.kernelspec
 
