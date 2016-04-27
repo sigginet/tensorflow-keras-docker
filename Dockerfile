@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
         libhdf5-dev \
         graphviz \
         vim \
+        imagemagick \
         && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
