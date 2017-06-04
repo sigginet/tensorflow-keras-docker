@@ -1,6 +1,4 @@
-FROM ubuntu:15.10
-
-MAINTAINER Ivan Vanderbyl <ivan@flood.io>
+FROM debian:jessie
 
 # Pick up some TF dependencies
 RUN apt-get update && apt-get install -y \
@@ -65,4 +63,4 @@ EXPOSE 8888
 COPY keras.json /root/.keras/keras.json
 COPY . /root
 
-CMD ["/bin/bash"]
+CMD jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token=
