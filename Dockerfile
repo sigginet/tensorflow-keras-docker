@@ -2,14 +2,15 @@ FROM debian:jessie
 
 # Pick up some TF dependencies
 RUN apt-get update && apt-get install -y \
+        python3 \
         curl \
         libfreetype6-dev \
         libpng12-dev \
         libzmq3-dev \
         pkg-config \
-        python-numpy \
-        python-pip \
-        python-scipy \
+        python3-numpy \
+        python3-pip \
+        python3-scipy \
         git \
         libhdf5-dev \
         graphviz \
@@ -18,6 +19,8 @@ RUN apt-get update && apt-get install -y \
         && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+RUN cp /usr/bin/python3 /usr/bin/python && cp /usr/bin/pip3 /usr/bin/pip
 
 RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
@@ -35,9 +38,9 @@ RUN pip --no-cache-dir install \
     python -m ipykernel.kernelspec
 
 # Install TensorFlow CPU version.
-ENV TENSORFLOW_VERSION 0.8.0rc0
+ENV TENSORFLOW_VERSION 1.0.0
 RUN pip --no-cache-dir install \
-    https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-${TENSORFLOW_VERSION}-cp27-none-linux_x86_64.whl
+    https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-${TENSORFLOW_VERSION}-cp34-cp34m-linux_x86_64.whl
 
 # Set up our notebook config.
 # COPY jupyter_notebook_config.py /root/.jupyter/
