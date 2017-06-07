@@ -38,7 +38,7 @@ RUN pip --no-cache-dir install \
     python -m ipykernel.kernelspec
 
 # Install TensorFlow CPU version.
-ENV TENSORFLOW_VERSION 1.0.0
+ENV TENSORFLOW_VERSION 1.1.0
 RUN pip --no-cache-dir install \
     https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-${TENSORFLOW_VERSION}-cp34-cp34m-linux_x86_64.whl
 
@@ -53,7 +53,7 @@ RUN pip --no-cache-dir install \
 RUN pip install git+git://github.com/Theano/Theano.git
 RUN pip install keras
 
-WORKDIR "/root"
+WORKDIR "/notebooks"
 
 # Copy some examples
 RUN git clone git://github.com/fchollet/keras.git
@@ -64,6 +64,7 @@ EXPOSE 6006
 EXPOSE 8888
 
 COPY keras.json /root/.keras/keras.json
-COPY . /root
+COPY start.sh /
 
-CMD jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token=
+CMD /start.sh
+#CMD jupyter notebook --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token=
