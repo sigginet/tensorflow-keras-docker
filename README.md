@@ -31,7 +31,7 @@ docker run \
 	-e KERAS_BACKEND=tensorflow \
 	-p 8888:8888 \
 	-p 6006:6006 \
-	-v $${HOME}/notebooks:/notebooks \
+	-v ${HOME}/notebooks:/notebooks \
 	peterrosell/keras-jupyter
 ```
 
