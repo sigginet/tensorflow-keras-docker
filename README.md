@@ -14,21 +14,30 @@ or boot2docker before running this image.
 ### Building the image:
 
 ```bash
-docker build -f Dockerfile -t keras-1 .
+	docker build . --tag peterrosell/keras-jupyter
 ```
 
 ### Running:
 
-```bash
-docker run -it keras-1
-```
+1. Make a directory named ```notebooks``` in your home directory.
 
-This will drop you to a bash shell in `/root`. From here you can launch any of
-the Keras examples in `./keras/examples`.
-
-### Example `imdb_cnn.py`:
+2. Run the following command from command line
 
 ```bash
-cd ./keras/examples
-python imdb_cnn.py
+	docker run \
+		-it \
+		--rm \
+		--name keras \
+		-e KERAS_BACKEND=tensorflow \
+		-p 8888:8888 \
+		-p 6006:6006 \
+		-v $${HOME}/notebooks:/notebooks \
+		peterrosell/keras-jupyter
 ```
+
+3. Browse to http://localhost:8888 to access the GUI for jupyter Notebooks. 
+Browse to http://localhost:6006 to access Tensorboard. Tensorboard is used for displaying log results from a learing session.
+
+4. To shutdown just press Ctrl-C at command line.
+
+
