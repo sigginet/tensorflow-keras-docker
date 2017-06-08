@@ -14,7 +14,7 @@ or boot2docker before running this image.
 ### Building the image:
 
 ```bash
-	docker build . --tag peterrosell/keras-jupyter
+docker build . --tag peterrosell/keras-jupyter
 ```
 
 ### Running:
@@ -24,15 +24,15 @@ or boot2docker before running this image.
 2. Run the following command from command line
 
 ```bash
-	docker run \
-		-it \
-		--rm \
-		--name keras \
-		-e KERAS_BACKEND=tensorflow \
-		-p 8888:8888 \
-		-p 6006:6006 \
-		-v $${HOME}/notebooks:/notebooks \
-		peterrosell/keras-jupyter
+docker run \
+	-it \
+	--rm \
+	--name keras \
+	-e KERAS_BACKEND=tensorflow \
+	-p 8888:8888 \
+	-p 6006:6006 \
+	-v $${HOME}/notebooks:/notebooks \
+	peterrosell/keras-jupyter
 ```
 
 3. Browse to http://localhost:8888 to access the GUI for jupyter Notebooks. 
